@@ -2,24 +2,13 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import NameComponent from './components/NameComponents';
+import Counter from './components/Counter';
+import ColorSwitcher from './components/ColorSwitch';
+import Footer from './components/Footer';
+import CustomButton from './components/Button';
 
 function App() {
-  const [buttonValue, setButtonValue] = useState(2);
-  const arrayOfColors = ["red", "green", "blue", "orange", "cyan", "magenta", "pink", "white", "tomato", "navajowhite", "purple", "violet", "skyblue"];
-
-  function handleClickButton() {
-    // My logic goes here.
-    const newButtonValue = buttonValue * 2;
-    setButtonValue(newButtonValue);
-  }
-
-  function handlePageColorChange() {
-    const valueBetween0and10 = Math.round(Math.random() * arrayOfColors.length - 1);
-    console.log(valueBetween0and10, arrayOfColors[valueBetween0and10]);
-
-    document.body.style.backgroundColor = arrayOfColors[valueBetween0and10];
-  }
-
   return (
     <>
       {/* <div>
@@ -31,17 +20,21 @@ function App() {
         </a>
       </div> */}
 
-      <h1>Vite + React</h1>
+      <NameComponent text={"Vite + React"} imgSrc={"https://www.jetbrains.com/grazie/img/Grazie.svg"} />
+      <NameComponent text={"My name is Mayowa"} />
 
       <div className="card">
-        <button onClick={handleClickButton}>{buttonValue}</button>
-
+        <Counter></Counter>
         <br /><br />
+        <ColorSwitcher></ColorSwitcher>
 
-        <button onClick={handlePageColorChange}>Change Page color</button>
-
-        {/* <div>{valueBetween0and13}</div> */}
+        <br />
+        <CustomButton text={"Button 1"}></CustomButton>
+        <CustomButton text={"Button 2"} color={"green"}></CustomButton>
+        <CustomButton text={"Submit"} bg={"green"} color={"white"}></CustomButton>
+        <CustomButton text={"Cancel"} bg={"rose"} customClick={() => alert('clicked button')}></CustomButton>
       </div>
+      <Footer></Footer>
     </>
   )
 }
